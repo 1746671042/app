@@ -1,0 +1,219 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/qin4.jpg",
+			"images/qin1.jpg",
+			"images/qin3.jpg",
+			"images/qin2.jpg",
+			"js/jquery-3.2.1.min.js",
+			"fonts/mui.ttf",
+			"template/index.html",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2"
+		],
+		"refer": [
+			"template/index.html",
+			"template/follow.html",
+			"template/find.html",
+			"template/me.html"
+		]
+	},
+	"template/index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"images/slide1.png",
+			"images/slide3.png",
+			"fonts/mui.ttf",
+			"images/slide2.png",
+			"images/qin1.jpg",
+			"images/qin4.jpg",
+			"images/qin3.jpg",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.ttf",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2"
+		],
+		"refer": [
+			"template/info.html",
+			"template/info1.html",
+			"template/login.html",
+			"template/userinfo.html"
+		]
+	},
+	"template/find.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"fonts/mui.ttf",
+			"images/qin1.jpg",
+			"images/qin2.jpg",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+			"images/qin4.jpg",
+			"images/26.mp4",
+			"images/timg.jpg"
+		],
+		"refer": [
+			"template/login.html"
+		]
+	},
+	"template/follow.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"fonts/mui.ttf",
+			"images/qin4.jpg",
+			"images/qin1.jpg",
+			"images/qin3.jpg",
+			"images/qin2.jpg",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2"
+		],
+		"refer": [
+			"template/login.html"
+		]
+	},
+	"template/me.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"fonts/mui.ttf",
+			"images/qin4.jpg",
+			"images/qin1.jpg",
+			"images/qin3.jpg",
+			"images/卡券包.png",
+			"images/订阅.png",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.ttf"
+		],
+		"refer": [
+			"template/login.html",
+			"template/upshow.html",
+			"template/showww.html",
+			"template/video.html"
+		]
+	},
+	"template/info.html": {
+		"resources": [
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"images/01：实现首页底部导航的切换.mp4",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+			"images/26.mp4",
+			"template/info_info.html",
+			"template/info_info.php"
+		],
+		"refer": [
+			"template/info_info.html",
+			"template/info_info.php"
+		]
+	},
+	"template/login.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"fonts/mui.ttf",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"images/logo.png",
+			"images/background.jpg",
+			"images/back.jpg",
+			"images/login.jpg"
+		],
+		"refer": [
+			"template/reg.html",
+			"template/index.html",
+			"index.html"
+		]
+	},
+	"template/reg.html": {
+		"resources": [
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"images/logo.png",
+			"images/qin1.jpg",
+			"images/timg.jpg",
+			"images/background.jpg",
+			"images/back.jpg",
+			"images/reg.jpg"
+		]
+	},
+	"template/info_info.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+			"fonts/mui.ttf",
+			"images/26.mp4",
+			"images/slide1.png",
+			"images/qin1.jpg",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+			"images/qin3.jpg",
+			"images/qin2.jpg",
+			"images/logo.png",
+			"images/timg.jpg"
+		]
+	},
+	"template/upshow.html": {
+		"resources": [
+			"css/mui.min.css",
+			"images/qin4.jpg",
+			"font-awesome-4.7.0/css/font-awesome.min.css",
+			"images/qin3.jpg",
+			"font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"js/jquery-3.2.1.min.js",
+			"images/qin1.jpg"
+		],
+		"refer": [
+			"template/index.html",
+			"template/login.html"
+		]
+	},
+	"template/showww.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/mui.js",
+			"images/qin1.jpg",
+			"images/qin3.jpg",
+			"images/qin2.jpg",
+			"images/qin4.jpg"
+		]
+	},
+	"template/userinfo.html": {
+		"resources": [
+			"images/logo.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf"
+		]
+	},
+	"template/video.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-3.2.1.min.js"
+		]
+	}
+}

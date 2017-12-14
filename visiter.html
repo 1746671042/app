@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+		<style type="text/css">
+			.mui-slider a {
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.mui-slider img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#icon {
+				width: 100%;
+				position: absolute;
+				z-index: 999;
+				bottom: 15px;
+				padding-left: 40%;
+			}
+			
+			#icon li {
+				float: left;
+				width: 10px;
+				height: 10px;
+				list-style: none;
+				border-radius: 5px;
+				border: 1px solid white;
+				margin-left: 5px;
+			}
+			
+			.active {
+				background: white;
+			}
+			
+			#close {
+				width: 50px;
+				height: 25px;
+				position: absolute;
+				top: 20px;
+				right: 5px;
+				z-index: 999;
+				text-align: center;
+				line-height: 25px;
+				color: white;
+			}
+			
+			#start {
+				display: none;
+				width: 70px;
+				position: absolute;
+				bottom: 60px;
+				left: 40%;
+				z-index: 999;
+				text-align: center;
+				line-height: 25px;
+				color: white;
+				font-size: 25px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class=mui-content>
+			<!--图片轮播-->
+			<div class="mui-slider mui-fullscreen">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/qin1.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/qin2.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/qin3.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/qin4.jpg" /></a>
+					</div>
+				</div>
+			</div>
+			<!--圆点-->
+
+			<ul id="icon">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+
+			<div id="close">
+				<p id="time">
+					<font color="#166f97" id="f1">6s</font>后跳转主页</p>
+			</div>
+			<div id="start">
+				<p>开始体验</p>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" charset="utf-8">
+	mui.init();
+	var s = mui('.mui-slider');
+	s.slider({
+		interval: 1000 //自动轮播周期，若为0则不自动播放，默认为0；
+	});
+	//监听轮播
+	document.querySelector('.mui-slider').addEventListener("slide", function(event) {
+		var num = event.detail.slideNumber;
+		var lis = $("#icon li");
+		lis.removeClass("active");
+		lis.eq(num).addClass("active");
+
+		console.log(num);
+		if(num == 3) {
+			document.getElementById("start").style.display = "block";
+		}
+	});
+	var i = 6;
+	var time = window.setInterval(tt, 1000);
+
+	function tt() {
+		i--;
+		document.getElementById('f1').innerHTML = i + 's';
+		if(i < 1) {
+			window.clearInterval(time);
+			//window.location.href = "http://www.baidu.com";
+		}
+	}
+</script>

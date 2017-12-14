@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>发现</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			.mui-content>img {
+				width: 100%;
+				height: 200px;
+			}
+			#redbox span{
+				background:rgba(255,255,255,.4);
+				display: inline-block;
+				width: 100%;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				color: grey;
+				
+			}
+			#redbox span:hover{
+				background: black;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--右侧图标-->
+		<div style="display:none;width: 100px;height: 120px; border-radius:5px;position: absolute;right:0px;top:50px; z-index: 999;" id="redbox">
+			<span class="fa fa-id-badge">拉黑</span>
+			<span class="fa fa-bell-slash">屏蔽</span>
+			<span class="fa fa-hand-paper-o" >举报</span>
+			<span class="fa fa-user-o">联系我们</span>
+		</div>
+		<header class="mui-bar mui-bar-nav">
+			<img class="mui-media-object" src="../images/qin4.jpg" id="header_left" style="border-radius: 50%; width: 40px;height:40px;margin-top:2px;">
+			<h1 class="mui-title">发现</h1>
+			<a class="mui-icon mui-icon-bars mui-pull-right"></a>
+		</header>
+		<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="header_nav" style="margin-top: 50px;">
+			<div class="mui-scroll ">
+				<a class="mui-control-item mui-active ">
+					订阅
+				</a>
+				<a class="mui-control-item">
+					推荐
+				</a>
+				<a class="mui-control-item">
+					搞笑
+				</a>
+				<a class="mui-control-item">
+					社会
+				</a>
+				<a class="mui-control-item">
+					音乐
+				</a>
+				<a class="mui-control-item">
+					电视剧
+				</a>
+				<a class="mui-control-item">
+					社会
+				</a>
+				<a class="mui-control-item">
+					动漫
+				</a>
+				<a class="mui-control-item">
+					汽车
+				</a>
+				<a class="mui-control-item">
+					综艺
+				</a>
+			</div>
+		</div>
+
+		<ul class="mui-table-view" style="margin-top: 15px;">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					为您推荐
+				</a>
+			</li>
+
+		</ul>
+		<div id="list">
+
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" charset="utf-8">
+	mui.init();
+	mui("#header_nav").scroll();
+	
+	mui.plusReady(function(){
+		//改变头像
+        var uid = plus.storage.getItem("user_id");  //获取用户id
+        if(uid){
+				mui.ajax({
+					data: {
+						uid:uid,
+					}, 
+					dataType: 'json',
+					type: 'POST',
+					url:"http://localhost/php/app/home/index.php?class=user&method=logo",
+					success: function(data) {
+						var userimage = data.data["image"];
+						var username = data.data["username"];
+	//					console.log(username);
+						if(data.code == 200) {
+	//						console.log(userimage);
+					    	$("#user_photo").attr("src",userimage);
+					    	$("#header_left").attr("src",userimage);
+					    	$("#username").html(username);
+						}
+					},
+					
+				})
+			} 
+            //调取数据
+            mui.ajax({ 
+				dataType: 'json',
+				type: 'get', 
+				url:"http://localhost/php/app/home/index.php?class=limit&method=getVideo&page=1",
+				success:function(e) { 
+				 	content = e.data;
+				 	for(var i=0;i<content.length;i++){ 
+		
+					 	var str ='<div class="mui-card"><div class="mui-card-header"><div class="mui-card-header mui-card-media"><img src="'+content[i].user.image+'"/><div class="mui-media-body"><div>'+content[i].username+'<span  class="mui-icon mui-pull-right follow" style="font-size: 10px;width: 35px;height:13px;border:1px solid gray;text-align:center;line-height:15px;background:red;color:white;" userId="'+content[i].user.id+'">关注</span></div><p>发表于<span>'+content[i].time+'</span> &nbsp;&nbsp;&nbsp;<span class="mui-icon mui-icon-redo"></span></p></div></div></div><div class="mui-card-content mui-content"><video width="100%" height="180" controls  poster="../images/timg.jpg"><source src="'+content[i].video_url+'" type="video/mp4 "></video></div><div class="mui-card-footer"><span class="fabulous" videoId="'+content[i].id+'">赞一个呗:</span><span class="fa fa-thumbs-o-up " ></span><span class="collect" video_Id="'+content[i].id+'">收藏:</span><span class="fa fa-heart-o"></span><span>屏蔽此类:</span><span class="fa fa-times"></div></div>';
+
+					 	$("#list").append(str);
+				 	}
+				}
+			});
+			
+			
+		  
+			//关注 
+			mui("#list").on("tap",".follow",function(){
+				var uid = plus.storage.getItem("user_id");
+				var userId = $(this).attr("userId");
+				var that = $(this);
+				if(uid){
+					//登录后点赞事件
+					mui.ajax({
+						data: {
+								uid:uid,
+								followId:userId,
+							}, 
+					    type:"post",
+					    url:"http://localhost/php/app/home/index.php?class=limit&method=guanZhu",
+					    success:function(data){
+					    	data = $.parseJSON(data);
+					    	if(data.code == 200){
+					    		console.log(data);
+					    		that.html("已关注");
+					    	}
+					     	
+					    }
+					})
+				}else{
+					var btnArray = ['否', '是'];  
+		            mui.confirm('是否去登陆', '你还未登录，去开启旅程吧。', btnArray, function(e) {  
+		                if (e.index == 1) {  
+		                	//确定
+		                    mui.openWindow({
+		                    	url:"login.html",
+		                    	id:"login"
+		                    });
+		                    //刷新指定页面
+					        plus.webview.getWebviewById("follow").reload(true);
+		                } else {  
+		                     
+		                }  
+		            }) 
+				}
+			});
+			
+			
+			
+			
+			//点赞
+			mui("#list").on("tap",".fabulous",function(){
+				var uid = plus.storage.getItem("user_id");
+				var videoId = $(this).attr("videoId");
+				var that = $(this); 
+				if(uid){
+					//登录后关注事件
+					mui.ajax({
+						data: {
+								uid:uid,
+								videoId:videoId,
+							}, 
+					    type:"post",
+					    url:"http://localhost/php/app/home/index.php?class=limit&method=fabulous",
+					    success:function(data){
+					    	data = $.parseJSON(data);
+					    	if(data.code == 200){
+					    		console.log(data);
+					    		that.html("已赞");
+					    		
+					    	}
+					     	
+					    } 
+					})
+				}else{
+					var btnArray = ['否', '是'];  
+		            mui.confirm('是否去登陆', '你还未登录，去开启旅程吧。', btnArray, function(e) {  
+		                if (e.index == 1) {  
+		                	//确定
+		                    mui.openWindow({
+		                    	url:"login.html",
+		                    	id:"login"
+		                    });
+		                    //刷新指定页面
+					        plus.webview.getWebviewById("follow").reload(true);
+		                } else {  
+		                     
+		                }  
+		            }) 
+				}
+			})
+			
+			
+			
+			
+			//收藏
+			mui("#list").on("tap",".collect",function(){
+				var uid = plus.storage.getItem("user_id");
+				var video_Id = $(this).attr("video_Id");
+				var that = $(this);
+				if(uid){
+					//登录后关注事件
+					mui.ajax({
+						data: {
+								uid:uid,
+								video_Id:video_Id,
+							}, 
+					    type:"post",
+					    url:"http://localhost/php/app/home/index.php?class=limit&method=collect",
+					    success:function(data){
+					    	data = $.parseJSON(data);
+					    	if(data.code == 200){
+					    		console.log(data);
+					    		that.html("已收藏");
+					    		
+					    	}
+					     	
+					    }
+					})
+				}else{
+					var btnArray = ['否', '是'];  
+		            mui.confirm('是否去登陆', '你还未登录，去开启旅程吧。', btnArray, function(e) {  
+		                if (e.index == 1) {  
+		                	//确定 
+		                    mui.openWindow({
+		                    	url:"login.html",
+		                    	id:"login"
+		                    });
+		                    //刷新指定页面
+					        plus.webview.getWebviewById("follow").reload(true);
+		                } else {  
+		                     
+		                }  
+		            }) 
+				}
+			})
+	})
+</script>

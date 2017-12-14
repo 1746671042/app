@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			.mui-slider img {
+				width: 100%;
+				height: 150px;
+			}
+			
+			.aslide-bottom {
+				/*margin-top: 100%;*/
+			}
+			
+			.aslide-bottom li {
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			.aslide-bottom li:nth-of-type(1) {
+				border-right: 1px solid gray;
+			}
+			
+			.aside-content>li {
+				padding: 10px 0px 20px 10px;
+				
+			}
+			.aside_menu>.mui-table-view-cell span{
+				font-size: 15px;
+			}
+			#list img {
+				height: 300px;
+				width: 250px;
+			}
+			
+			#left_bottom .mui-table-view-cell {
+				width: 18% !important;
+				font-size: 0.8em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 主界面菜单同时移动 -->
+		<!-- 侧滑导航根容器 -->
+		<div class="mui-off-canvas-wrap mui-draggable" id="shuaxin">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap ">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left" id="offCanvasSide" style="background-color: white;">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<!-- 菜单具体展示内容 -->
+
+							<ul class="mui-table-view mui-grid-view" style="background: url(../images/qin3.jpg)no-repeat; background-size: 100%;">
+								<li class="mui-table-view-cell mui-media mui-col-xs-6" id="login" style="width: 30%; margin-left: 35%;">
+									<a href="#">
+										<img id="user_photo" class="mui-media-object" src="../images/qin4.jpg" style="border-radius: 50%;width: 60px; height: 60px;">
+										<div class="mui-media-body">用户名:</div>
+										<div style="color: white;">
+											<h5 id="username">未登录</h5>
+										</div>
+									</a>
+								</li>
+
+							</ul>
+
+							<ul class="mui-table-view aside-content aside_menu">
+								
+								<li class="mui-table-view-cell">
+									<span class="mui-icon mui-icon-chatbubble">个性装扮</span> 
+								</li>
+								<li class="mui-table-view-cell">
+									<span class="mui-icon mui-icon-locked">我的收藏</span> 
+								</li>
+								<li class="mui-table-view-cell">
+									<span class="mui-icon mui-icon-pengyouquan">分享朋友圈</span> 
+								</li>
+								<li class="mui-table-view-cell">
+									<span class="mui-icon mui-icon-chatbubble">个性装扮</span> 
+								</li>
+								<li class="mui-table-view-cell">
+									<span class="mui-icon mui-icon-info	" id="exit" onclick="closeApp();">退出登录</span>
+								</li>
+                                <li class="mui-table-view-cell" id="menu">
+									<span class="mui-icon mui-icon-info">用户信息</span>
+								</li>
+							</ul>
+						</div>
+
+						<nav class="mui-bar mui-bar-tab" id="nav" style="margin-left: 20px;padding-right: 20px; background: white;">
+							<a class="mui-tab-item mui-active">
+								<span class="fa fa-bar-chart"></span>
+								<span class="mui-tab-label">趋势</span>
+							</a>
+							<!--<a class="mui-tab-item">
+								<span class="fa fa-search-minus"></span>
+								<span class="mui-tab-label">搜索</span>
+							</a>-->
+							<a class="mui-tab-item">
+								<span class="fa fa-thermometer-full"></span>
+								<span class="mui-tab-label">8C</span>
+							</a>
+							<a class="mui-tab-item">
+								<span class="fa fa-cog"></span>
+								<span class="mui-tab-label">设置</span>
+							</a>
+							<a class="mui-tab-item" >
+								<span class="fa fa-user-times"></span>
+								<span class="mui-tab-label" >退出</span>
+							</a>
+						</nav>
+					</div>
+				</aside>
+				<!-- 主页面标题 -->
+				<div class="mui-inner-wrap">
+					<div class="mui-progressbar mui-progressbar-infinite">
+						<span></span>
+					</div>
+					<header class="mui-bar mui-bar-nav">
+
+						<!--<a class="mui-icon mui-icon mui-icon mui-icon-bars mui-pull-left " id="header_left"></a>-->
+						<img class="mui-media-object" src="../images/qin4.jpg" id="header_left" style="border-radius: 50%; width: 40px;height:40px;margin-top:2px;">
+						<h1 class="mui-title">首页</h1>
+						<a class="mui-icon mui-icon-bars mui-pull-right"></a>
+					</header>
+					<div class="mui-content mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<div id="slider" class="mui-slider " style="margin-top: 5px;">
+
+								<div class="mui-progressbar mui-progressbar-infinite">
+									<span></span>
+								</div>
+
+								<div class="mui-slider-group mui-slider-loop ">
+									<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="../images/slide1.png">
+										</a>
+									</div>
+									<!-- 第一张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/slide2.png">
+										</a>
+									</div>
+									<!-- 第二张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/slide3.png">
+										</a>
+									</div>
+									<!-- 第三张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/slide2.png">
+										</a>
+									</div>
+									<!-- 第四张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="../images/slide1.png">
+										</a>
+									</div>
+									<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="../images/slide2.png">
+										</a>
+									</div>
+								</div>
+								<div class="mui-slider-indicator">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+								</div>
+							</div>
+
+							<div class="mui-input-row">
+								<label>搜索：</label>
+								<input type="text" class="mui-input-speech mui-input-clear" placeholder="录入您喜欢的主题">
+							</div>
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right" style="margin-top: 5px;">正在热播</a>
+								</li>
+							</ul>
+
+							<ul class="mui-table-view mui-grid-view" id="list">
+								<!--<li class="mui-table-view-cell mui-media mui-col-xs-6">
+									<a href="#">
+										<img class="mui-media-object" src="../images/qin1.jpg">
+										<div class="mui-media-body">张三</div>
+									</a>
+								</li>-->
+							
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" charset="utf-8">
+	mui.init({
+//		pullRefresh: {
+//			container: "#shuaxin", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+//			down: {
+//				height: 50, //可选,默认50.触发下拉刷新拖动距离,
+//				auto: false, //可选,默认false.首次加载自动下拉刷新一次
+//				contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+//				contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+//				contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+//				callback: pullfresh - function //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+//			}
+//		}
+	});
+	mui(".mui-scroll-wrapper").scroll({
+		deceleration: 0.0005
+	});
+	var s = mui('.mui-slider');
+	s.slider({
+		interval: 1000 //自动轮播周期，若为0则不自动播放，默认为0；
+	});
+	//监听轮播
+	document.querySelector('.mui-slider').addEventListener("slide", function(event) {
+		var num = event.detail.slideNumber;
+		var lis = $("#icon li");
+		lis.removeClass("active");
+		lis.eq(num).addClass("active");
+
+	});
+	document.getElementById("header_left").addEventListener("tap", function() {
+		mui('.mui-off-canvas-wrap').offCanvas().toggle();
+	})
+
+	//添加监听事件
+	mui.plusReady(function() {
+		
+       
+
+
+
+		
+		
+		
+        //改变头像
+        var uid = plus.storage.getItem("user_id");  //获取用户id
+        if(uid !=null){
+		mui.ajax({
+				data: {
+					uid:uid,
+				},
+				dataType: 'json',
+				type: 'POST',
+				url:"http://localhost/php/app/home/index.php?class=user&method=logo",
+				success: function(data) {
+					var userimage = data.data["image"];
+					var username = data.data["username"];
+//					console.log(username);
+					if(data.code == 200) {
+//						console.log(userimage);
+				    	$("#user_photo").attr("src",userimage);
+				    	$("#header_left").attr("src",userimage);
+				    	$("#username").html(username);
+					}
+				},
+				
+			})
+          
+          
+        //登陆后头像点击事件
+          document.getElementById('user_photo').addEventListener('tap', function() {
+		          	mui.openWindow({
+		          		url:"userinfo.html",
+		          		id:"userinfo"
+		          	})
+            })
+           
+		}else{
+			mui("#login").on("tap", "img", function() {
+			mui.openWindow({
+				url: "login.html",
+				id: "login",
+				styles: {
+					top: "0px", //新页面顶部位置
+					bottom: "0px", //新页面底部位置
+
+				},
+				extras: {
+					//传参
+					"title": "登录"
+				},
+			});
+		});
+		};
+		
+		mui.ajax({
+				dataType: 'json',
+				type: 'get',
+				url:"http://localhost/php/app/home/index.php?class=limit&method=getVideo&page=1",
+				success:function(e) {	
+//				 e = $.parseJSON(e);
+				 content = e.data;
+				 console.log(e); 
+				 for(var i=0;i<content.length;i++){
+					 var str ='<li class="mui-table-view-cell mui-media mui-col-xs-6 list" videoId="'+content[i].id+'"><a href="#"><img class="mui-media-object" src="'+content[i].image_url+'"><div class="mui-media-body">'+content[i].username+'</div></a></li>';
+					 $("#list").append(str);
+				 }
+				}
+			});
+ 
+  
+
+                //获取当前视频的Id
+				mui("#list").on("tap",".list",function(){
+				        
+						var videoId = $(this).attr("videoId");
+						console.log(videoId);
+						mui.openWindow({
+							url: "info.html",
+							id: "info",
+							styles: {
+								top: "0px", //新页面顶部位置
+								bottom: "0px"
+							},
+							extras:{
+								video_id:videoId  //扩展参数
+							}
+						});
+				});
+		
+					document.getElementById('exit').addEventListener('tap', function() {
+			            if (mui.os.ios) {  
+			                app.setState({});
+			                mui.openWindow({
+			                    url: 'login.html',
+			                    id: 'login',
+			                    show: {
+			                        aniShow: 'pop-in'
+			                    },
+			                    waiting: {
+			                        autoShow: false
+			                    }
+			                });
+			                return;
+			            }
+			            var btnArray = [{
+			                title: "注销当前账号"
+			            }, {
+			                title: "直接关闭应用"
+			            }];
+			            plus.nativeUI.actionSheet({
+			                cancel: "取消",
+			                buttons: btnArray
+			            }, function(event) {
+			                var index = event.index;
+			                switch (index) {
+			                    case 1:
+			                        //注销账号
+			                        plus.storage.removeItem("user_id");
+			                        plus.webview.currentWebview().reload(true);
+			                        plus.webview.getWebviewById("main_find").reload(true);
+									plus.webview.getWebviewById("main_follow").reload(true);
+									plus.webview.getWebviewById("main_me").reload(true);
+//			                        app.setState({});
+//			                        plus.webview.getLaunchWebview().show("pop-in");
+			                        break;
+			                    case 2:
+			                        plus.runtime.quit();
+			                        break;
+			                }
+			            });
+			        }, false);
+
+		mui("#menu").on("tap", "span", function() {
+			mui.openWindow({
+				url: "userinfo.html",
+				id: "userinfo",
+				styles: {
+					top: "0px", //新页面顶部位置
+					bottom: "0px", //新页面底部位置
+
+				},
+				extras: {
+					//传参
+					"title": "用户信息"
+				},
+			});
+		});
+		
+
+	})
+	
+</script>

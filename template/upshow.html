@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>关于</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+            #preview{
+				margin-left:5px;
+				width: 100px;
+				height: 100px;
+			}
+			
+			#preview video{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+
+	<body style="background: white;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-back mui-pull-left" id="header_left" style="font-size: 15px;margin-top: 6px;">取消</a>
+			<h1 class="mui-title">视频发布</h1>
+			<a class="mui-icon mui-icon-paperplane mui-pull-right" style="font-size: 15px;margin-top: 6px;"  id="fabiao">发表</a>
+		</header>
+        <div class="content" style="position: relative;">
+			<div class="mui-input-row" style="margin-top: 45px;" >
+				<textarea class="mui-input-clear" placeholder="您想说的or你想表达的……" style="height:250px; text-align: left;"contenteditable="true" id="text"></textarea>
+	       </div>
+		    <div style="position: absolute;left: 20px;bottom:40px;" id="addimg">
+		    	<p>选择你的视频或图片:</p>
+		    	<img src="../images/qin1.jpg" style="width: 70px; height: 70px; " />
+		    </div>
+       </div>
+       <div id="preview" style="display: none;">
+			<video controls="controls" width="100%" id="myvideo">
+				<source src="" id="mysource"></source>
+			</video>
+			<br />
+			<button id="restart">重新上传</button>
+		</div>
+		<input type="hidden" name="videoUrl" value="" id="videoUrl"/>
+		<input type="hidden" name="imgUrl" value="" id="imgUrl"/>
+       <ul class="mui-table-view">
+               <li class="mui-table-view-cell">
+                   <a class="">
+                   	<p style="font-size: 20px;color:rgba(255,0,0,.7);font-family:"微软雅黑";"> 热门:</p>
+                   	<br>
+                   	<span style="padding: 5px 10px; background: gainsboro;margin: 0px 5px;color: white;">收拾起心情，继续走吧！</span>
+                   	<span class="fa fa-envelope-open" style="padding: 5px 10px; background: gainsboro;color: white;">给三年后的自己发一条信</span>
+                   </a>
+               </li>
+               <li class="mui-table-view-cell">
+                   <a class="">
+                   	<div class="mui-input-row">
+                   	    <label>地点</label>
+                   	    <div class="mui-switch mui-active">
+                   	        <div class="mui-switch-handle"></div>
+                   	    </div>
+                   	</div>
+                   </a>
+               </li>
+               <li class="mui-table-view-cell">
+                   <a class="">
+                   	<div class="mui-input-row">
+                   	    <label>谁能观看:</label>
+                   	    	<select name="see" id="see">
+                   	    		<option value="所有人">所有人</option>
+                   	    		<option value="好友">好友</option>
+                   	    		<option value="仅自己">仅自己</option>
+                   	    	</select>
+                   	</div>
+                   </a>
+               </li>
+           </ul>
+           <div style="margin-top: 25px;">
+           	<span class="mui-icon mui-icon-weixin" style="margin-left: 20px;"></span>
+           	<span class="mui-icon mui-icon-pengyouquan" style="margin: 0px 10px;"></span>
+           	<span class="mui-icon mui-icon-qq"></span>
+           	<span class="fa fa-bell-o " style="margin-left: 55%;"></span>
+           </div>
+	</body>
+	
+
+</html>
+<script>
+	mui.init();
+	mui.plusReady(function() {
+		document.getElementById("header_left").addEventListener("tap", function(){
+			mui.back();
+		})
+		
+		
+		//点击添加视频
+      		document.getElementById("addimg").addEventListener("tap",function(){
+      			//判断是否在html+的流应用上使用
+      			 if (mui.os.plus) { 
+	        		//弹框
+	                plus.nativeUI.actionSheet({ 
+	                    title: "上传视频",//标题 
+	                    cancel: "取消", //取消
+	                    buttons:[ //按钮
+                            {title:"摄像"}
+                        ] 
+	                }, function(b) { /*actionSheet 按钮点击事件*/ 
+	                	if(b.index == 1){
+	                		getVideo();
+	                	}
+	                }) 
+            	} 
+            	
+      		});
+      		
+      		//重新上传
+//    		document.getElementById("#restart").addEventListener("tap",function(){
+//    			 if (mui.os.plus) { 
+//	        		//弹框
+//	                plus.nativeUI.actionSheet({ 
+//	                    title: "上传视频",//标题 
+//	                    cancel: "取消", //取消
+//	                    buttons:[ //按钮
+//                          {title:"摄像"}
+//                      ] 
+//	                }, function(b) { /*actionSheet 按钮点击事件*/ 
+//	                	if(b.index == 1){
+//	                		getVideo();
+//	                	}
+//	                }) 
+//          	} 
+//    		});
+      		
+      		//点击发表发送内容
+      		document.getElementById("fabiao").addEventListener("tap",function(){
+      			var content = $("#text").val();
+      			var videoUrl = $("#videoUrl").val();
+      			var imageUrl = $("#imgUrl").val();
+      			var see = $("#see").val();
+      			
+      			//用户id
+      			var uid = plus.storage.getItem("user_id");
+      			if(uid){
+//				var uid = 1;
+				
+					if(see =="所有人"){
+						see =1;
+					}else if(see =="好友"){
+						see =2;
+					}else{
+						see =3;
+					}
+	      			//mui.ajax发送
+      			mui.ajax({
+						data: {
+							content:content,
+							image_url: imageUrl,
+							video_url:videoUrl,
+							uid:uid,
+							see:see
+						},
+						dataType: 'json',
+						type: 'POST',
+						url:"http://localhost/php/app/home/index.php?class=user&method=upshow",
+						success: function(data) {
+							console.log(data);
+							if(data.code == 200) {
+						    //登录成功
+								plus.ui.toast("发表成功！");
+//								mui.openWindow({
+//									url: 'index.html',
+//									id: 'index'
+//								})
+								 mui.confirm('是否再次发表，确认？', '我的发表', function(e) {  
+				                    if (e.index == 1) { 
+				                    	//刷新当前页面
+				                    	window.location.reload();			                         
+				                    } else {  
+				                        mui.back();
+				                    }  
+				                })
+							} else if(data.code ==100){
+								plus.ui.toast("信息不完整！");
+							}else if(data.code ==300){
+								plus.ui.toast("请先登录");
+							}
+							else if(data.code ==500){
+								plus.ui.toast("请选择视频");
+							}else{
+								//发表失败
+								plus.ui.toast("发表失败");
+							}
+						},
+						error: function() {}
+					})
+      			}else{
+	      			var btnArray = ['否', '是'];  
+		            mui.confirm('是否去登陆', '你还未登录，去开启旅程吧。', btnArray, function(e) {  
+		                if (e.index == 1) {  
+		                	//确定
+		                    mui.openWindow({
+		                    	url:"login.html",
+		                    	id:"login"
+		                    });
+		                    
+		                    //刷新指定页面
+					        plus.webview.getWebviewById("follow").reload(true);
+		                } else {  
+		                     
+		                }  
+		            }) 
+      			};
+      		});
+      	});
+      	
+      	//摄像的方法
+      	function getVideo(){
+      		//调用摄像头对象
+      		var cmr = plus.camera.getCamera();
+            //获取相机开始录像
+            cmr.startVideoCapture(function(p) {
+            //录像
+            plus.io.resolveLocalFileSystemURL(p, function(entry) {
+            //通过URL参数获取目录对象或文件对象 就是获取到录像文件位置    
+                console.log(p);//打印文件位置，可以直接用作上传路径
+                
+                //上传的地址
+                var server="http://www.lele.com/php/app/home/index.php?class=upload&method=uploadVideo";
+                //获取等待的样式
+                var wt=plus.nativeUI.showWaiting();
+                //添加任务
+                var task=plus.uploader.createUpload(server,
+					 {method:"POST"},
+					 function(t,status){//t:返回的值，status是状态
+			            //上传完成
+			            if(status==200){
+			                wt.close();
+			                mui.toast("上传成功");
+			                //上传成功
+			                console.log("上传成功："+t.responseText);
+			                //服务端返回的结果
+			                var result = JSON.parse(t.responseText);
+			                $('#mysource').attr('src',result.data.url);
+			                //video重新加载
+							document.querySelector('#myvideo').load();
+//				                
+			                $('#addimg').remove();
+			                $('#preview').show();
+			                $("#videoUrl").val(result.data.url);
+			                $("#imgUrl").val(result.data.imgUrl);
+			            }else{
+//						        console.log("上传失败："+status);
+							mui.toast("上传失败");
+			                wt.close();
+			            }
+					}
+				);
+
+				task.addFile(p,{key:'myfile'});
+				task.start();
+            }, function(e) {
+                console.log("读取录像文件错误：" + e.message);
+            });
+
+        }, function(e) {
+            console.log("失败");
+            plus.nativeUI.toast("录像失败！",{duration:"long"});
+        }, {
+            filename: "_doc/camera/",//文件保存目录
+            index:2
+        });
+      	}
+</script>

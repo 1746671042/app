@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="header_left"></a>
+			<h1 class="mui-title">账号资料</h1>
+		</header>
+		<div class="mui-content" style="background: white;">
+			
+				<div class="logo" style="width: 100%;text-align: center;">
+					<img src="../images/logo.png" style="width: 150px; height: 100px;">
+					<p style="color: bisque;">相信自己，一起皆有可能。</p>
+				</div>
+			<!--/*注意：注册按钮不能和账号密码输入框放在一个form里面*/-->
+			<form>
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-right" src="../images/logo.png" style="border-radius: 50%; border: 1px solid gainsboro;">
+			            <div class="mui-media-body" style="font-size: 17px;line-height: 50px;">
+			            	头像 :
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <span class=" mui-pull-right"style="line-height: 50px;">浪过一只鸭</span>
+			            <div class="mui-media-body" style="font-size: 17px;line-height: 50px;">
+			            	<span>昵称:</span>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <span class=" mui-pull-right"style="line-height: 50px;">1746671042</span>
+			            <div class="mui-media-body" style="font-size: 17px;line-height: 50px;">
+			            	<span>账号:</span>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <input type="password" class="mui-pull-right"style="line-height: 50px;width: 40%;" placeholder="111222"></span>
+			            <div class="mui-media-body" style="font-size: 17px;line-height: 50px;">
+			            	<span>密码:</span>
+			            </div>
+			        </a>
+			    </li>
+
+			</ul>
+			</form>
+			<p style="position: fixed;bottom: 0px; font-size: 20px; color: red;background: white; width: 100%; height: 40px;line-height: 40px; text-align:center;">退出登录</p>
+		</div>
+
+		
+		
+		
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				document.getElementById("header_left").addEventListener("tap", function() {
+					mui.back();
+				})
+			})
+		</script>
+	</body>
+
+</html>
